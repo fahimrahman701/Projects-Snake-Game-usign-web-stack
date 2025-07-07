@@ -52,12 +52,23 @@ A modern, neon-themed Snake Game built with HTML5, CSS3, and JavaScript — feat
 ---
 
 ## 🗂 Project Structure
-📦 snake-by-fahim
-├── index.html # Main game layout
-├── styles.css # Visual styles & responsive UI
-├── game.js # Core game logic
-├── favicon.svg # Site icon (optional)
-└── README.md # GitHub documentation
+
+📁 snake-by-fahim/
+
+├── index.html  
+  Main game layout and canvas structure.
+
+├── styles.css  
+  All visual styles, layout, responsiveness, and neon effects.
+
+├── game.js  
+  Contains core game logic, movement, collision detection, scoring, and UI interaction.
+
+├── favicon.svg  
+  Site icon for browser tabs (optional).
+
+└── README.md  
+  Documentation for GitHub and contributors.
 
 
 ---
