@@ -48,6 +48,10 @@ document.addEventListener('keydown', handleKeyPress);
 // Initialize game
 function init() {
     updateHighScoreDisplay();
+    // Clear the canvas completely at initialization
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // Draw the initial snake and food without starting the game
     drawGame();
     document.addEventListener('keydown', startGameOnFirstKey);
 }
@@ -56,13 +60,16 @@ function startGameOnFirstKey(event) {
     if (!gameStarted && ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
         gameStarted = true;
         document.removeEventListener('keydown', startGameOnFirstKey);
-        startGame();
+        window.startGame();
+        event.preventDefault(); // Prevent default browser scrolling
     }
 }
 
-function startGame() {
+// Make startGame function globally accessible for the onclick attribute
+window.startGame = function() {
     if (!isPaused) {
         gameLoop = setInterval(gameStep, GAME_SPEED);
+        gameStarted = true;
     }
 }
 
@@ -122,13 +129,15 @@ function handleKeyPress(event) {
     
     // Check if Enter key is pressed when game over screen is visible
     if (key === 'Enter' && gameOverElement.style.display === 'block') {
-        resetGame();
+        window.resetGame();
+        event.preventDefault(); // Prevent default browser behavior
         return;
     }
     
     // Handle space key for pause/resume
     if (key === ' ' && gameStarted && gameOverElement.style.display !== 'block') {
         togglePause();
+        event.preventDefault(); // Prevent default browser behavior
         return;
     }
     
@@ -140,6 +149,7 @@ function handleKeyPress(event) {
     };
     if (key in directions) {
         direction = directions[key];
+        event.preventDefault(); // Prevent default browser scrolling with arrow keys
     }
 }
 
@@ -313,18 +323,23 @@ function gameOver() {
     gameOverElement.style.display = 'block';
 }
 
-// Reset game state
-function resetGame() {
+// Reset game state - make globally accessible for the onclick attribute
+window.resetGame = function() {
     snake = [{ x: GRID_SIZE / 2, y: GRID_SIZE / 2 }];
     direction = 'right';
     score = 0;
     scoreElement.textContent = 'Score: 0';
     food = generateFood();
     gameOverElement.style.display = 'none';
-    gameStarted = false;
     isPaused = false;
     clearInterval(gameLoop);
-    init();
+    
+    // Start the game immediately when Play Again is clicked
+    gameStarted = true;
+    window.startGame();
+    
+    // Remove the startGameOnFirstKey event listener as we're starting immediately
+    document.removeEventListener('keydown', startGameOnFirstKey);
 }
 
 // Start the game

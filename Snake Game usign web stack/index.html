@@ -12,9 +12,58 @@
 </head>
 <body>
     <h1>Snake Game</h1>
-    <canvas id="game-board" width="400" height="400"></canvas>
-    <div id="score">Score: 0</div>
-    <div id="high-score">High Score: 0</div>
+    
+    <div class="game-container">
+        <div class="game-info">
+            <div id="score">Score: 0</div>
+            <div id="high-score">High Score: 0</div>
+            <div id="difficulty">Difficulty: NORMAL</div>
+        </div>
+        
+        <canvas id="game-board" width="400" height="400"></canvas>
+        
+        <div class="controls-info">
+            <h3>Controls</h3>
+            <div class="controls-grid">
+                <div class="control-item">
+                    <span class="key">Arrow Keys</span>
+                    <span class="action">Move Snake</span>
+                </div>
+                <div class="control-item">
+                    <span class="key">SPACE</span>
+                    <span class="action">Pause/Resume</span>
+                </div>
+                <div class="control-item">
+                    <span class="key">1-4</span>
+                    <span class="action">Change Difficulty</span>
+                </div>
+                <div class="control-item">
+                    <span class="key">S</span>
+                    <span class="action">Show Statistics</span>
+                </div>
+            </div>
+            
+            <div class="power-ups-info">
+                <h4>Power-ups</h4>
+                <div class="power-up-item">
+                    <span class="symbol">⚡</span>
+                    <span class="description">Speed Boost</span>
+                </div>
+                <div class="power-up-item">
+                    <span class="symbol">2x</span>
+                    <span class="description">Double Points</span>
+                </div>
+                <div class="power-up-item">
+                    <span class="symbol">🛡️</span>
+                    <span class="description">Shield (No Collision)</span>
+                </div>
+                <div class="power-up-item">
+                    <span class="symbol">📉</span>
+                    <span class="description">Shrink Snake</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="game-over" id="game-over">
         <h2>Game Over!</h2>
@@ -24,7 +73,9 @@
         </div>
         <p>Final Score: <span id="final-score">0</span></p>
         <p>High Score: <span id="modal-high-score">0</span></p><br>
-        <button onclick="resetGame()">Play Again</button>
+        <div class="button-container">
+            <button onclick="resetGame()">Play Again</button>
+        </div>
     </div>
 
     <script src="game.js"></script>
