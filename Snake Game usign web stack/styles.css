@@ -79,6 +79,7 @@ h1 {
 
 .controls-info {
     display: flex;
+    flex-direction: column;
     gap: 40px;
     justify-content: center;
     flex-wrap: wrap;
@@ -314,44 +315,542 @@ h1 {
     background: linear-gradient(45deg, #60efff, #00ff87);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Mobile Devices (320px - 480px) */
+@media (max-width: 480px) {
     body {
-        padding: 10px;
+        padding: 8px;
+        min-height: 100vh;
     }
     
     h1 {
-        font-size: 2rem;
+        font-size: 1.5rem;
         text-align: center;
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+    }
+    
+    .game-container {
+        gap: 15px;
+        max-width: 100%;
     }
     
     .game-info {
         flex-direction: column;
+        gap: 8px;
+        width: 100%;
+    }
+    
+    .game-info > div {
+        font-size: 0.9rem;
+        text-align: center;
+        padding: 8px 12px;
+        width: 100%;
+    }
+    
+    #game-board {
+        width: 100%;
+        max-width: 300px;
+        height: 300px;
+        border-width: 2px;
+    }
+    
+    .controls-info {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .controls-info h3, .controls-info h4 {
+        font-size: 0.8rem;
+        margin-bottom: 10px;
+    }
+    
+    .controls-grid, .power-ups-info {
+        align-items: center;
+        gap: 6px;
+    }
+    
+    .control-item, .power-up-item {
+        justify-content: center;
+        font-size: 0.8rem;
         gap: 10px;
+    }
+    
+    .key {
+        font-size: 0.6rem;
+        padding: 3px 6px;
+        min-width: 50px;
+    }
+    
+    .symbol {
+        font-size: 0.8rem;
+        padding: 3px 6px;
+        min-width: 25px;
+    }
+    
+    .game-over {
+        padding: 20px;
+        width: 90%;
+        max-width: 300px;
+    }
+    
+    .game-over h2 {
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+    }
+    
+    .game-over button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .stats-content {
+        padding: 20px;
+        width: 95%;
+    }
+    
+    .stats-content h2 {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+    
+    .stat-item {
+        padding: 8px 12px;
+    }
+    
+    .stat-label {
+        font-size: 0.8rem;
+    }
+    
+    .stat-value {
+        font-size: 0.7rem;
+    }
+}
+
+/* Large Mobile Devices (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    body {
+        padding: 12px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+        text-align: center;
+        margin-bottom: 18px;
+    }
+    
+    .game-container {
+        gap: 18px;
+    }
+    
+    .game-info {
+        flex-direction: column;
+        gap: 12px;
     }
     
     .game-info > div {
         font-size: 1rem;
         text-align: center;
-    }
-    
-    .controls-info {
-        flex-direction: column;
-        gap: 20px;
-        text-align: center;
-    }
-    
-    .controls-grid, .power-ups-info {
-        align-items: center;
-    }
-    
-    .control-item, .power-up-item {
-        justify-content: center;
+        padding: 10px 15px;
     }
     
     #game-board {
         width: 100%;
+        max-width: 350px;
+        height: 350px;
+    }
+    
+    .controls-info {
+        flex-direction: column;
+        gap: 25px;
+        text-align: center;
+    }
+    
+    .controls-info h3, .controls-info h4 {
+        font-size: 0.9rem;
+        margin-bottom: 12px;
+    }
+    
+    .controls-grid, .power-ups-info {
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .control-item, .power-up-item {
+        justify-content: center;
+        font-size: 0.85rem;
+    }
+    
+    .key {
+        font-size: 0.65rem;
+        padding: 4px 7px;
+        min-width: 55px;
+    }
+    
+    .symbol {
+        font-size: 0.9rem;
+        padding: 4px 7px;
+        min-width: 28px;
+    }
+    
+    .game-over {
+        padding: 25px;
+        width: 85%;
         max-width: 400px;
-        height: auto;
+    }
+    
+    .game-over h2 {
+        font-size: 1.6rem;
+    }
+    
+    .stats-content {
+        padding: 25px;
+        width: 90%;
+    }
+}
+
+/* Tablet Devices (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    body {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 2.2rem;
+        margin-bottom: 25px;
+    }
+    
+    .game-container {
+        gap: 25px;
+        max-width: 900px;
+    }
+    
+    .game-info {
+        gap: 25px;
+    }
+    
+    .game-info > div {
+        font-size: 1.1rem;
+        padding: 12px 18px;
+    }
+    
+    #game-board {
+        width: 100%;
+        max-width: 450px;
+        height: 450px;
+    }
+    
+    .controls-info {
+        gap: 35px;
+        max-width: 700px;
+    }
+    
+    .controls-info h3, .controls-info h4 {
+        font-size: 1rem;
+        margin-bottom: 18px;
+    }
+    
+    .control-item, .power-up-item {
+        font-size: 0.95rem;
+    }
+    
+    .key {
+        font-size: 0.7rem;
+        padding: 5px 9px;
+        min-width: 65px;
+    }
+    
+    .symbol {
+        font-size: 1rem;
+        padding: 5px 9px;
+        min-width: 32px;
+    }
+    
+    .game-over {
+        padding: 35px;
+        width: 80%;
+        max-width: 500px;
+    }
+    
+    .game-over h2 {
+        font-size: 1.9rem;
+    }
+    
+    .stats-content {
+        padding: 35px;
+        max-width: 600px;
+    }
+    
+    .stats-content h2 {
+        font-size: 1.6rem;
+    }
+}
+
+/* Laptop Devices (1025px - 1440px) */
+@media (min-width: 1025px) and (max-width: 1440px) {
+    body {
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 2.4rem;
+        margin-bottom: 30px;
+    }
+    
+    .game-container {
+        gap: 30px;
+        max-width: 1000px;
+    }
+    
+    .game-info {
+        gap: 30px;
+    }
+    
+    .game-info > div {
+        font-size: 1.2rem;
+        padding: 12px 20px;
+    }
+    
+    #game-board {
+        width: 100%;
+        max-width: 500px;
+        height: 500px;
+    }
+    
+    .controls-info {
+        gap: 40px;
+        max-width: 800px;
+    }
+    
+    .controls-info h3, .controls-info h4 {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+    }
+    
+    .control-item, .power-up-item {
+        font-size: 1rem;
+    }
+    
+    .key {
+        font-size: 0.75rem;
+        padding: 5px 10px;
+        min-width: 70px;
+    }
+    
+    .symbol {
+        font-size: 1.1rem;
+        padding: 5px 10px;
+        min-width: 35px;
+    }
+    
+    .game-over {
+        padding: 40px;
+        width: 75%;
+        max-width: 600px;
+    }
+    
+    .game-over h2 {
+        font-size: 2rem;
+    }
+    
+    .stats-content {
+        padding: 40px;
+        max-width: 700px;
+    }
+    
+    .stats-content h2 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Large Monitors (1441px and above) */
+@media (min-width: 1441px) {
+    body {
+        padding: 30px;
+    }
+    
+    h1 {
+        font-size: 3rem;
+        margin-bottom: 40px;
+        letter-spacing: 3px;
+    }
+    
+    .game-container {
+        gap: 40px;
+        max-width: 1200px;
+    }
+    
+    .game-info {
+        gap: 40px;
+    }
+    
+    .game-info > div {
+        font-size: 1.4rem;
+        padding: 15px 25px;
+    }
+    
+    #game-board {
+        width: 100%;
+        max-width: 600px;
+        height: 600px;
+        border-width: 4px;
+    }
+    
+    .controls-info {
+        gap: 50px;
+        max-width: 1000px;
+    }
+    
+    .controls-info h3, .controls-info h4 {
+        font-size: 1.3rem;
+        margin-bottom: 25px;
+    }
+    
+    .control-item, .power-up-item {
+        font-size: 1.1rem;
+        gap: 20px;
+    }
+    
+    .key {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+        min-width: 80px;
+    }
+    
+    .symbol {
+        font-size: 1.2rem;
+        padding: 6px 12px;
+        min-width: 40px;
+    }
+    
+    .game-over {
+        padding: 50px;
+        width: 70%;
+        max-width: 700px;
+    }
+    
+    .game-over h2 {
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+    }
+    
+    .game-over button {
+        padding: 15px 30px;
+        font-size: 1.2rem;
+    }
+    
+    .stats-content {
+        padding: 50px;
+        max-width: 800px;
+    }
+    
+    .stats-content h2 {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+    
+    .stat-item {
+        padding: 15px 20px;
+        gap: 20px;
+    }
+    
+    .stat-label {
+        font-size: 1rem;
+    }
+    
+    .stat-value {
+        font-size: 0.9rem;
+    }
+    
+    .stats-content button {
+        padding: 15px 30px;
+        font-size: 1.1rem;
+    }
+}
+
+/* Landscape Orientation for Mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    body {
+        padding: 5px;
+    }
+    
+    h1 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+    
+    .game-container {
+        flex-direction: row;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .game-info {
+        flex-direction: row;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    
+    .game-info > div {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+    
+    #game-board {
+        max-width: 250px;
+        height: 250px;
+    }
+    
+    .controls-info {
+        flex-direction: column;
+        gap: 10px;
+        text-align: left;
+    }
+    
+    .controls-info h3, .controls-info h4 {
+        font-size: 0.7rem;
+        margin-bottom: 8px;
+    }
+    
+    .control-item, .power-up-item {
+        font-size: 0.7rem;
+        gap: 8px;
+    }
+    
+    .key {
+        font-size: 0.5rem;
+        padding: 2px 5px;
+        min-width: 40px;
+    }
+    
+    .symbol {
+        font-size: 0.7rem;
+        padding: 2px 5px;
+        min-width: 20px;
+    }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    #game-board {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Reduced Motion for Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .game-over button:hover,
+    .stats-content button:hover {
+        transform: none;
     }
 }
