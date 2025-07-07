@@ -1,0 +1,126 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(45deg, #1e0040, #390066);
+    font-family: 'Orbitron', monospace;
+    color: white;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    font-family: 'Press Start 2P', monospace;
+    background: linear-gradient(to right, #00ff87, #60efff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 4px rgba(0, 255, 135, 0.2);
+    letter-spacing: 2px;
+}
+
+#game-board {
+    border: 3px solid rgba(0, 255, 135, 0.3);
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 255, 135, 0.2);
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+#score {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    color: #00ff87;
+    text-shadow: 0 0 10px rgba(0, 255, 135, 0.5);
+    letter-spacing: 1px;
+}
+
+#high-score {
+    margin-top: 10px;
+    font-size: 1.3rem;
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    color: #60efff;
+    text-shadow: 0 0 10px rgba(96, 239, 255, 0.5);
+    letter-spacing: 1px;
+}
+
+.game-over {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(30, 0, 64, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    display: none;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(0, 255, 135, 0.3);
+}
+
+.game-over h2 {
+    margin-bottom: 20px;
+    font-family: 'Press Start 2P', monospace;
+    color: #ff3366;
+    text-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+}
+
+#congratulations {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: linear-gradient(45deg, rgba(0, 255, 135, 0.2), rgba(96, 239, 255, 0.2));
+    border-radius: 10px;
+    border: 2px solid rgba(0, 255, 135, 0.5);
+}
+
+#congratulations h3 {
+    color: #00ff87;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    font-family: 'Press Start 2P', monospace;
+    text-shadow: 0 0 15px rgba(0, 255, 135, 0.8);
+    letter-spacing: 1px;
+}
+
+#congratulations p {
+    color: #60efff;
+    font-size: 1.1rem;
+    font-family: 'Orbitron', monospace;
+    font-weight: 400;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+.game-over button {
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-family: 'Press Start 2P', monospace;
+    background: linear-gradient(45deg, #00ff87, #60efff);
+    border: none;
+    color: #1e0040;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 255, 135, 0.3);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.game-over button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 255, 135, 0.4);
+    background: linear-gradient(45deg, #60efff, #00ff87);
+}

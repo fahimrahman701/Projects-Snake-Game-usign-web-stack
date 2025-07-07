@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <style>
+    /* Default light mode styles */
+    .snake-body {
+      fill: #4CAF50;
+      stroke: #388E3C;
+      stroke-width: 2px;
+    }
+    .snake-eye {
+      fill: #000000;
+    }
+    .snake-tongue {
+      fill: #F44336;
+    }
+    
+    /* Dark mode styles */
+    @media (prefers-color-scheme: dark) {
+      .snake-body {
+        fill: #8BC34A;
+        stroke: #689F38;
+      }
+      .snake-eye {
+        fill: #FFFFFF;
+      }
+    }
+  </style>
+  
+  <!-- Snake body - S-shaped curve -->
+  <path class="snake-body" d="M75,30 C60,30 55,50 40,50 C25,50 20,70 5,70 L5,60 C15,60 20,40 35,40 C50,40 55,20 70,20 L75,20 Z" />
+  
+  <!-- Snake head -->
+  <circle class="snake-body" cx="80" cy="25" r="10" />
+  
+  <!-- Snake eye -->
+  <circle class="snake-eye" cx="83" cy="22" r="2" />
+  
+  <!-- Snake tongue -->
+  <path class="snake-tongue" d="M90,25 L95,22 L93,25 L95,28 L90,25" />
+</svg>
