@@ -77,6 +77,85 @@ h1 {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
+/* Mobile Touch Controls */
+.mobile-controls {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 255, 135, 0.1);
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.mobile-control-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-btn {
+    width: 60px;
+    height: 60px;
+    border: 2px solid rgba(0, 255, 135, 0.5);
+    border-radius: 12px;
+    background: linear-gradient(145deg, rgba(0, 255, 135, 0.1), rgba(96, 239, 255, 0.1));
+    color: #00ff87;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0, 255, 135, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Press Start 2P', monospace;
+    text-shadow: 0 0 10px rgba(0, 255, 135, 0.8);
+    position: relative;
+    overflow: hidden;
+}
+
+.mobile-btn:active {
+    transform: scale(0.95);
+    background: linear-gradient(145deg, rgba(0, 255, 135, 0.3), rgba(96, 239, 255, 0.3));
+    box-shadow: 0 2px 8px rgba(0, 255, 135, 0.4);
+    border-color: rgba(0, 255, 135, 0.8);
+}
+
+.mobile-btn:hover {
+    background: linear-gradient(145deg, rgba(0, 255, 135, 0.2), rgba(96, 239, 255, 0.2));
+    box-shadow: 0 6px 20px rgba(0, 255, 135, 0.3);
+    border-color: rgba(0, 255, 135, 0.7);
+}
+
+.mobile-btn span {
+    pointer-events: none;
+    z-index: 1;
+}
+
+.mobile-pause {
+    background: linear-gradient(145deg, rgba(255, 51, 102, 0.1), rgba(255, 136, 0, 0.1));
+    border-color: rgba(255, 51, 102, 0.5);
+    color: #ff3366;
+    text-shadow: 0 0 10px rgba(255, 51, 102, 0.8);
+}
+
+.mobile-pause:active {
+    background: linear-gradient(145deg, rgba(255, 51, 102, 0.3), rgba(255, 136, 0, 0.3));
+    border-color: rgba(255, 51, 102, 0.8);
+}
+
+.mobile-pause:hover {
+    background: linear-gradient(145deg, rgba(255, 51, 102, 0.2), rgba(255, 136, 0, 0.2));
+    border-color: rgba(255, 51, 102, 0.7);
+}
+
 .controls-info {
     display: flex;
     flex-direction: column;
@@ -356,11 +435,24 @@ h1 {
         border-width: 2px;
     }
     
+    /* Show mobile controls on mobile */
+    .mobile-controls {
+        display: flex !important;
+        margin-bottom: 30px; /* Add more space below mobile controls */
+    }
+    
+    .mobile-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
     .controls-info {
         flex-direction: column;
         gap: 15px;
         text-align: center;
         width: 100%;
+        margin-top: 20px; /* Add space above controls info */
     }
     
     .controls-info h3, .controls-info h4 {
@@ -373,6 +465,13 @@ h1 {
         gap: 6px;
     }
     
+    .power-ups-info h4{
+        margin-bottom: 15px;
+        margin-top: 15px;
+    }
+    .power-ups-info{
+        margin-top: 15px;
+    }
     .control-item, .power-up-item {
         justify-content: center;
         font-size: 0.8rem;
@@ -463,10 +562,23 @@ h1 {
         height: 350px;
     }
     
+    /* Show mobile controls on large mobile */
+    .mobile-controls {
+        display: flex !important;
+        margin-bottom: 35px; /* Add more space below mobile controls */
+    }
+    
+    .mobile-btn {
+        width: 55px;
+        height: 55px;
+        font-size: 22px;
+    }
+    
     .controls-info {
         flex-direction: column;
         gap: 25px;
         text-align: center;
+        margin-top: 25px; /* Add space above controls info */
     }
     
     .controls-info h3, .controls-info h4 {
@@ -629,6 +741,8 @@ h1 {
         font-size: 1.1rem;
         margin-bottom: 20px;
     }
+
+
     
     .control-item, .power-up-item {
         font-size: 1rem;
@@ -695,12 +809,13 @@ h1 {
     #game-board {
         width: 100%;
         max-width: 600px;
-        height: 600px;
+        height: 480px;
         border-width: 4px;
+        margin-bottom: 50px;
     }
     
     .controls-info {
-        gap: 50px;
+        gap: 30px;
         max-width: 1000px;
     }
     
@@ -708,7 +823,120 @@ h1 {
         font-size: 1.3rem;
         margin-bottom: 25px;
     }
+
+    .controls-grid{
+        margin-bottom: 50px;
+    }
+
+    .control-item, .power-up-item {
+        font-size: 1.1rem;
+        gap: 20px;
+    }
     
+    .key {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+        min-width: 80px;
+    }
+    
+    .symbol {
+        font-size: 1.2rem;
+        padding: 6px 12px;
+        min-width: 40px;
+    }
+    
+    .game-over {
+        padding: 50px;
+        width: 70%;
+        max-width: 700px;
+    }
+    
+    .game-over h2 {
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+    }
+    
+    .game-over button {
+        padding: 15px 30px;
+        font-size: 1.2rem;
+    }
+    
+    .stats-content {
+        padding: 50px;
+        max-width: 800px;
+    }
+    
+    .stats-content h2 {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+    
+    .stat-item {
+        padding: 15px 20px;
+        gap: 20px;
+    }
+    
+    .stat-label {
+        font-size: 1rem;
+    }
+    
+    .stat-value {
+        font-size: 0.9rem;
+    }
+    
+    .stats-content button {
+        padding: 15px 30px;
+        font-size: 1.1rem;
+    }
+}
+
+/* Large Monitors (1920px and above) */
+@media (min-width: 1920px) {
+    body {
+        padding: 50px;
+    }
+    
+    h1 {
+        font-size: 3rem;
+        margin-bottom: 40px;
+        letter-spacing: 3px;
+    }
+    
+    .game-container {
+        gap: 40px;
+        max-width: 1200px;
+    }
+    
+    .game-info {
+        gap: 40px;
+    }
+    
+    .game-info > div {
+        font-size: 1.4rem;
+        padding: 15px 25px;
+    }
+    
+    #game-board {
+        width: 100%;
+        max-width: 600px;
+        height: 600px;
+        border-width: 4px;
+    }
+    
+    .controls-info {
+        gap: 10px;
+        max-width: 1000px;
+    }
+    
+    .controls-info h3, .controls-info h4 {
+        font-size: 1.3rem;
+        margin-bottom: 25px;
+    }
+
+    .controls-grid{
+        margin-bottom: 50px;
+    }
+
     .control-item, .power-up-item {
         font-size: 1.1rem;
         gap: 20px;
@@ -804,10 +1032,24 @@ h1 {
         height: 250px;
     }
     
+    /* Mobile controls in landscape */
+    .mobile-controls {
+        display: flex !important;
+        gap: 8px;
+        margin-bottom: 20px; /* Add space below mobile controls */
+    }
+    
+    .mobile-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+    
     .controls-info {
         flex-direction: column;
         gap: 10px;
         text-align: left;
+        margin-top: 15px; /* Add space above controls info */
     }
     
     .controls-info h3, .controls-info h4 {

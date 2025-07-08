@@ -1,6 +1,6 @@
 // Game constants
 const GRID_SIZE = 20;
-const GAME_SPEED = 120; // Adjusted for smoother movement
+const GAME_SPEED = 180; // Slower speed for better mobile gameplay
 
 // Get canvas context
 const canvas = document.getElementById('game-board');
@@ -45,6 +45,108 @@ function updateHighScoreDisplay() {
 // Event listeners for keyboard controls
 document.addEventListener('keydown', handleKeyPress);
 
+// Mobile touch controls
+function initMobileControls() {
+    const btnUp = document.getElementById('btn-up');
+    const btnDown = document.getElementById('btn-down');
+    const btnLeft = document.getElementById('btn-left');
+    const btnRight = document.getElementById('btn-right');
+    const btnPause = document.getElementById('btn-pause');
+
+    // Function to handle direction change
+    function changeDirection(newDirection) {
+        if (!gameStarted) {
+            gameStarted = true;
+            document.removeEventListener('keydown', startGameOnFirstKey);
+            window.startGame();
+        }
+        
+        const directions = {
+            'up': direction !== 'down' ? 'up' : direction,
+            'down': direction !== 'up' ? 'down' : direction,
+            'left': direction !== 'right' ? 'left' : direction,
+            'right': direction !== 'left' ? 'right' : direction
+        };
+        
+        if (newDirection in directions) {
+            direction = directions[newDirection];
+        }
+    }
+
+    // Add touch event listeners
+    btnUp.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        changeDirection('up');
+    });
+
+    btnDown.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        changeDirection('down');
+    });
+
+    btnLeft.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        changeDirection('left');
+    });
+
+    btnRight.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        changeDirection('right');
+    });
+
+    btnPause.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        if (gameStarted && gameOverElement.style.display !== 'block') {
+            togglePause();
+            // Update pause button icon
+            btnPause.innerHTML = isPaused ? '<span>▶</span>' : '<span>⏸</span>';
+        }
+    });
+
+    // Add click event listeners as fallback
+    btnUp.addEventListener('click', (e) => {
+        e.preventDefault();
+        changeDirection('up');
+    });
+
+    btnDown.addEventListener('click', (e) => {
+        e.preventDefault();
+        changeDirection('down');
+    });
+
+    btnLeft.addEventListener('click', (e) => {
+        e.preventDefault();
+        changeDirection('left');
+    });
+
+    btnRight.addEventListener('click', (e) => {
+        e.preventDefault();
+        changeDirection('right');
+    });
+
+    btnPause.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (gameStarted && gameOverElement.style.display !== 'block') {
+            togglePause();
+            // Update pause button icon
+            btnPause.innerHTML = isPaused ? '<span>▶</span>' : '<span>⏸</span>';
+        }
+    });
+
+    // Prevent default touch behavior on mobile controls
+    document.addEventListener('touchstart', function(e) {
+        if (e.target.closest('.mobile-controls')) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+
+    document.addEventListener('touchmove', function(e) {
+        if (e.target.closest('.mobile-controls')) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+}
+
 // Initialize game
 function init() {
     updateHighScoreDisplay();
@@ -54,6 +156,8 @@ function init() {
     // Draw the initial snake and food without starting the game
     drawGame();
     document.addEventListener('keydown', startGameOnFirstKey);
+    // Initialize mobile controls
+    initMobileControls();
 }
 
 function startGameOnFirstKey(event) {
@@ -199,108 +303,126 @@ function drawGame() {
     ctx.fillStyle = 'rgba(0, 0, 0, 0.85)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Draw snake with neon effect
+    // Draw snake with improved neon effect
     snake.forEach((segment, index) => {
-        const gradient = ctx.createLinearGradient(
-            segment.x * CELL_SIZE,
-            segment.y * CELL_SIZE,
-            (segment.x + 1) * CELL_SIZE,
-            (segment.y + 1) * CELL_SIZE
-        );
-
-        if (index === 0) { // Head
-            gradient.addColorStop(0, '#00ff87');
-            gradient.addColorStop(1, '#60efff');
-        } else { // Body with fade effect
-            const alpha = 1 - (index / snake.length) * 0.6;
-            gradient.addColorStop(0, `rgba(0, 255, 135, ${alpha})`);
-            gradient.addColorStop(1, `rgba(96, 239, 255, ${alpha})`);
-        }
-
-        ctx.fillStyle = gradient;
-        
-        // Draw rounded rectangle for segments
-        const radius = CELL_SIZE / 3;
         const x = segment.x * CELL_SIZE;
         const y = segment.y * CELL_SIZE;
-        const width = CELL_SIZE - 1;
-        const height = CELL_SIZE - 1;
+        const centerX = x + CELL_SIZE / 2;
+        const centerY = y + CELL_SIZE / 2;
+        const radius = (CELL_SIZE / 2) - 1;
 
-        ctx.beginPath();
-        ctx.moveTo(x + radius, y);
-        ctx.lineTo(x + width - radius, y);
-        ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-        ctx.lineTo(x + width, y + height - radius);
-        ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-        ctx.lineTo(x + radius, y + height);
-        ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-        ctx.lineTo(x, y + radius);
-        ctx.quadraticCurveTo(x, y, x + radius, y);
-        ctx.closePath();
-        ctx.fill();
-
-        // Add neon glow effect
-        ctx.shadowColor = '#00ff87';
-        ctx.shadowBlur = 10;
-        ctx.fill();
-        ctx.shadowBlur = 0;
+        if (index === 0) { 
+            // Head - draw as circle with gradient
+            const gradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, radius);
+            gradient.addColorStop(0, '#60efff');
+            gradient.addColorStop(0.7, '#00ff87');
+            gradient.addColorStop(1, '#00cc6a');
+            
+            ctx.fillStyle = gradient;
+            ctx.shadowColor = '#00ff87';
+            ctx.shadowBlur = 15;
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+        } else { 
+            // Body segments - draw as circles with fade effect
+            const alpha = Math.max(0.3, 1 - (index / snake.length) * 0.7);
+            const gradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, radius);
+            gradient.addColorStop(0, `rgba(96, 239, 255, ${alpha})`);
+            gradient.addColorStop(0.7, `rgba(0, 255, 135, ${alpha})`);
+            gradient.addColorStop(1, `rgba(0, 204, 106, ${alpha})`);
+            
+            ctx.fillStyle = gradient;
+            ctx.shadowColor = '#00ff87';
+            ctx.shadowBlur = 8;
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius * (0.7 + alpha * 0.3), 0, Math.PI * 2);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+        }
 
         // Add eyes to the head
         if (index === 0) {
             ctx.fillStyle = '#1e0040';
-            const eyeSize = CELL_SIZE / 5;
-            const eyeOffset = CELL_SIZE / 3;
+            const eyeSize = CELL_SIZE / 6;
+            const eyeDistance = CELL_SIZE / 4;
             
             // Position eyes based on direction
             let leftEyeX, leftEyeY, rightEyeX, rightEyeY;
             switch(direction) {
                 case 'right':
-                    leftEyeX = x + CELL_SIZE - eyeOffset;
-                    leftEyeY = y + eyeOffset;
-                    rightEyeX = x + CELL_SIZE - eyeOffset;
-                    rightEyeY = y + CELL_SIZE - eyeOffset;
+                    leftEyeX = centerX + eyeDistance/2;
+                    leftEyeY = centerY - eyeDistance/2;
+                    rightEyeX = centerX + eyeDistance/2;
+                    rightEyeY = centerY + eyeDistance/2;
                     break;
                 case 'left':
-                    leftEyeX = x + eyeOffset;
-                    leftEyeY = y + eyeOffset;
-                    rightEyeX = x + eyeOffset;
-                    rightEyeY = y + CELL_SIZE - eyeOffset;
+                    leftEyeX = centerX - eyeDistance/2;
+                    leftEyeY = centerY - eyeDistance/2;
+                    rightEyeX = centerX - eyeDistance/2;
+                    rightEyeY = centerY + eyeDistance/2;
                     break;
                 case 'up':
-                    leftEyeX = x + eyeOffset;
-                    leftEyeY = y + eyeOffset;
-                    rightEyeX = x + CELL_SIZE - eyeOffset;
-                    rightEyeY = y + eyeOffset;
+                    leftEyeX = centerX - eyeDistance/2;
+                    leftEyeY = centerY - eyeDistance/2;
+                    rightEyeX = centerX + eyeDistance/2;
+                    rightEyeY = centerY - eyeDistance/2;
                     break;
                 case 'down':
-                    leftEyeX = x + eyeOffset;
-                    leftEyeY = y + CELL_SIZE - eyeOffset;
-                    rightEyeX = x + CELL_SIZE - eyeOffset;
-                    rightEyeY = y + CELL_SIZE - eyeOffset;
+                    leftEyeX = centerX - eyeDistance/2;
+                    leftEyeY = centerY + eyeDistance/2;
+                    rightEyeX = centerX + eyeDistance/2;
+                    rightEyeY = centerY + eyeDistance/2;
                     break;
             }
             
+            // Draw eyes with white background and dark pupils
+            ctx.fillStyle = '#ffffff';
             ctx.beginPath();
             ctx.arc(leftEyeX, leftEyeY, eyeSize, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.beginPath();
             ctx.arc(rightEyeX, rightEyeY, eyeSize, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Draw pupils
+            ctx.fillStyle = '#1e0040';
+            ctx.beginPath();
+            ctx.arc(leftEyeX, leftEyeY, eyeSize/2, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(rightEyeX, rightEyeY, eyeSize/2, 0, Math.PI * 2);
             ctx.fill();
         }
     });
 
-    // Draw food with pulsing effect
-    const pulseSize = Math.sin(Date.now() / 200) * 2;
-    ctx.fillStyle = '#ff3366';
+    // Draw food with improved pulsing effect
+    const pulseSize = Math.sin(Date.now() / 300) * 3;
+    const foodCenterX = food.x * CELL_SIZE + CELL_SIZE / 2;
+    const foodCenterY = food.y * CELL_SIZE + CELL_SIZE / 2;
+    const foodRadius = (CELL_SIZE / 2 - 2) + pulseSize;
+    
+    // Create radial gradient for food
+    const foodGradient = ctx.createRadialGradient(foodCenterX, foodCenterY, 0, foodCenterX, foodCenterY, foodRadius);
+    foodGradient.addColorStop(0, '#ff6b9d');
+    foodGradient.addColorStop(0.7, '#ff3366');
+    foodGradient.addColorStop(1, '#cc1144');
+    
+    ctx.fillStyle = foodGradient;
     ctx.shadowColor = '#ff3366';
-    ctx.shadowBlur = 15;
+    ctx.shadowBlur = 20;
     ctx.beginPath();
-    ctx.arc(
-        food.x * CELL_SIZE + CELL_SIZE / 2,
-        food.y * CELL_SIZE + CELL_SIZE / 2,
-        (CELL_SIZE / 2 - 2) + pulseSize,
-        0,
-        Math.PI * 2
-    );
+    ctx.arc(foodCenterX, foodCenterY, foodRadius, 0, Math.PI * 2);
     ctx.fill();
+    
+    // Add inner sparkle effect
+    ctx.fillStyle = '#ffffff';
+    ctx.shadowBlur = 0;
+    ctx.beginPath();
+    ctx.arc(foodCenterX - foodRadius/3, foodCenterY - foodRadius/3, foodRadius/4, 0, Math.PI * 2);
+    ctx.fill();
+    
     ctx.shadowBlur = 0;
 }
 
@@ -333,6 +455,12 @@ window.resetGame = function() {
     gameOverElement.style.display = 'none';
     isPaused = false;
     clearInterval(gameLoop);
+    
+    // Reset pause button icon
+    const btnPause = document.getElementById('btn-pause');
+    if (btnPause) {
+        btnPause.innerHTML = '<span>⏸</span>';
+    }
     
     // Start the game immediately when Play Again is clicked
     gameStarted = true;
