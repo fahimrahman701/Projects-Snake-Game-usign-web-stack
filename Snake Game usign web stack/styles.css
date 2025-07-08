@@ -733,7 +733,7 @@ h1 {
     }
     
     .controls-info {
-        gap: 40px;
+        gap:10px;
         max-width: 800px;
     }
     
@@ -742,6 +742,9 @@ h1 {
         margin-bottom: 20px;
     }
 
+    .controls-grid{
+        margin-bottom: 50px;
+    }
 
     
     .control-item, .power-up-item {
