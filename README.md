@@ -1,8 +1,3 @@
-Great! Here's your updated `README.md` with your **Netlify live demo link** included:
-
----
-
-````markdown
 # 🐍 Neon Snake Game
 
 A modern, responsive Snake Game built with HTML5, CSS3, and JavaScript. Designed for both desktop and mobile play, featuring a retro neon aesthetic, power-ups, difficulty levels, and high score tracking via `localStorage`.
@@ -34,6 +29,7 @@ A modern, responsive Snake Game built with HTML5, CSS3, and JavaScript. Designed
 ├── styles.css         # Styling for the game
 ├── game.js            # Core game logic
 ├── favicon.svg        # Favicon used in the browser tab
+
 ````
 
 ## 💻 How to Run Locally
@@ -111,9 +107,4 @@ This project is open-source and free to use.
 
 ---
 
-Have fun playing! 🐍✨
-Made with 💚 by **Fahim**
-
-```
-
----
+Enjoy the retro fun of the Snake Game! 🐍💚
