@@ -107,7 +107,6 @@ This project is open-source and free to use.
 
 ---
 
-Have fun playing! 🐍✨
-Made with 💚 by **Fahim**
+Enjoy the retro fun of the Snake Game! 🐍💚
 
 ```
