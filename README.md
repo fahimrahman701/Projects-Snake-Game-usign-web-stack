@@ -1,94 +1,119 @@
-# 🐍 Snake by Fahim
-
-A modern, neon-themed Snake Game built with HTML5, CSS3, and JavaScript — featuring difficulty levels, power-ups, glowing effects, and local high score tracking.
-
-🌐 **Live Demo**: [https://snake-by-fahim.netlify.app](https://snake-by-fahim.netlify.app)
+Great! Here's your updated `README.md` with your **Netlify live demo link** included:
 
 ---
 
-## 🎮 Features
+````markdown
+# 🐍 Neon Snake Game
 
-- ✅ Classic snake movement (Arrow keys)
-- 🎨 Neon retro visuals using canvas and CSS
-- ⏸ Pause/Resume with `SPACE`
-- 🏆 Local high score saving via `localStorage`
-- 🔁 Game over modal with "Play Again"
-- 📊 Difficulty control: Easy to Hardcore
-- ⚡ Power-ups: Speed boost, 2x points, shield, and shrink
-- 📈 Stats system (under development)
+A modern, responsive Snake Game built with HTML5, CSS3, and JavaScript. Designed for both desktop and mobile play, featuring a retro neon aesthetic, power-ups, difficulty levels, and high score tracking via `localStorage`.
+
+## 🔗 Live Demo
+
+🌐 **Play Now:** [https://snake-by-fahim.netlify.app/](https://snake-by-fahim.netlify.app/)
+
+## 🚀 Features
+
+- 🎮 Classic Snake gameplay
+- 🧠 High Score memory using `localStorage`
+- 📱 Mobile-friendly touch controls
+- ⏸️ Pause/Resume support (`Space` or touch)
+- 🔥 Power-ups:
+  - ⚡ Speed Boost
+  - 2x Double Points
+  - 🛡️ Shield (No Collision)
+  - 📉 Shrink Snake
+- 🎨 Neon glowing design and animations
+- 🎯 Difficulty Levels (1-4)
+- 🕹️ Gamepad-style UI and keyboard support
+- 📊 Stats & Controls guide panel
+
+## 🧩 Files Structure
+
+```bash
+├── index.html         # Main game page
+├── styles.css         # Styling for the game
+├── game.js            # Core game logic
+├── favicon.svg        # Favicon used in the browser tab
+````
+
+## 💻 How to Run Locally
+
+Just open `index.html` in your browser. No backend or installation required.
+
+### ▶️ Recommended: Run via Live Server
+
+1. Open the project in VS Code.
+2. Install the **Live Server** extension.
+3. Right-click `index.html` → **Open with Live Server**.
+
+## 🎮 Controls
+
+| Key / Button | Action                     |
+| ------------ | -------------------------- |
+| ⬆️⬇️⬅️➡️     | Move Snake                 |
+| SPACE        | Pause / Resume             |
+| ENTER        | Restart After Game Over    |
+| 1 – 4        | Change Difficulty          |
+| S            | Show Statistics (optional) |
+
+### 📱 Mobile Touch Controls
+
+Use the on-screen controls to:
+
+* Move the snake
+* Pause/Resume the game
+
+## 🏆 Power-Ups
+
+| Symbol | Effect                |
+| ------ | --------------------- |
+| ⚡      | Speed Boost           |
+| 2x     | Double Points         |
+| 🛡️    | Shield (No Collision) |
+| 📉     | Shrink Snake          |
+
+## 🧠 Game Logic Overview
+
+* 20x20 grid rendered with HTML `<canvas>`
+* Snake and food use pixel-based positioning
+* Food appears in random, non-colliding locations
+* Score increases on food collection
+* Game ends on wall/self collision
+* Smooth animations and pulsing effects for visual polish
+
+## 🧑‍💻 Developer
+
+* **Name**: Md. Fahimur Rahman
+* **Live Site**: [snake-by-fahim.netlify.app](https://snake-by-fahim.netlify.app)
+* **Tech Stack**: HTML5, CSS3, JavaScript
+* **Fonts**: [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P), [Orbitron](https://fonts.google.com/specimen/Orbitron)
+
+## 📱 Responsive Design
+
+Optimized for:
+
+* Mobile phones (portrait and landscape)
+* Tablets
+* Desktops and large screens
+
+Mobile controls show only on small screens.
+
+## 🎯 Future Improvements
+
+* Add sound effects 🎵
+* Add levels or missions 🗺️
+* Implement player leaderboard 📈
+* Add save/load game support 💾
+
+## 📄 License
+
+This project is open-source and free to use.
 
 ---
 
-## 🕹️ Controls
+Have fun playing! 🐍✨
+Made with 💚 by **Fahim**
 
-| Key        | Action                 |
-|------------|------------------------|
-| Arrow Keys | Move the snake         |
-| `SPACE`    | Pause / Resume         |
-| `ENTER`    | Restart game           |
-| `1-4`      | Change difficulty level|
-| `S`        | Show stats modal       |
+```
 
 ---
-
-## 💥 Power-Ups
-
-| Symbol | Effect                   |
-|--------|--------------------------|
-| ⚡     | Speed Boost              |
-| 2x     | Double Points            |
-| 🛡️     | Shield (No collision)    |
-| 📉     | Shrinks Snake Length     |
-
----
-
-## 🧪 Tech Stack
-
-- **HTML5 Canvas** — game rendering
-- **CSS3 (custom + gradients)** — glowing visuals
-- **Vanilla JavaScript (ES6)** — game logic and mechanics
-- **Google Fonts** — retro styling with "Press Start 2P" and "Orbitron"
-
----
-
-## 🗂 Project Structure
-
-📁 snake-by-fahim/
-
-├── index.html  
-  Main game layout and canvas structure.
-
-├── styles.css  
-  All visual styles, layout, responsiveness, and neon effects.
-
-├── game.js  
-  Contains core game logic, movement, collision detection, scoring, and UI interaction.
-
-├── favicon.svg  
-  Site icon for browser tabs (optional).
-
-└── README.md  
-  Documentation for GitHub and contributors.
-
-
----
-
-## 🚀 How to Run Locally
-
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/your-username/snake-by-fahim.git
-   cd snake-by-fahim
-
----
-
-## 📌 Future Improvements
-
-- 🎯 More power-ups and difficulty levels
-- 📊 Detailed stats modal
-- 🌍 Global leaderboard (Firebase or backend)
-- 📱 Mobile controls (touch support)
-
----
-
-🧑‍💻 Developed with ❤️ by Fahim Rahman
