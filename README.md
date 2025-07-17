@@ -108,5 +108,3 @@ This project is open-source and free to use.
 ---
 
 Enjoy the retro fun of the Snake Game! 🐍💚
-
-```
